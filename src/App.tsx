@@ -35,10 +35,15 @@ import { PRODUCTS, DIY_INGREDIENTS, HERO_IMAGE } from './data';
 import { Product, DIYIngredient, CartItem } from './types';
 
 // Static Image Imports for absolute path safety across environments
+// @ts-ignore
 import herbalWaxSalve from './assets/images/herbal_wax_salve_1782197007682.jpg';
+// @ts-ignore
 import soapSpringGarden from './assets/images/soap_spring_garden_1782198290883.jpg';
+// @ts-ignore
 import creamFacialHydration from './assets/images/cream_facial_hydration_1782198304461.jpg';
+// @ts-ignore
 import boatSoapsOriginal from './assets/images/boat_soaps_1782197026244.jpg';
+// @ts-ignore
 import beeswaxCandles from './assets/images/beeswax_candles_1782197042129.jpg';
 
 export default function App() {

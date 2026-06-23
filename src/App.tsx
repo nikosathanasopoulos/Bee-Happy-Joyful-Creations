@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Sparkles,
@@ -54,6 +54,7 @@ export default function App() {
   // Cart state
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+  const [cartToastVisible, setCartToastVisible] = useState<boolean>(false);
 
   // DIY Creator state
   const [diyBase, setDiyBase] = useState<string>('base-beeswax');
@@ -73,6 +74,7 @@ export default function App() {
   const [orderSubmitted, setOrderSubmitted] = useState<boolean>(false);
   const [submittedOrderText, setSubmittedOrderText] = useState<string>('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const cartToastTimerRef = useRef<ReturnType<typeof window.setTimeout> | null>(null);
 
   // Filter products based on search & category
   const filteredProducts = useMemo(() => {
@@ -95,6 +97,27 @@ export default function App() {
   const cartCount = useMemo(() => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   }, [cart]);
+
+  const showCartToast = () => {
+    setCartToastVisible(true);
+
+    if (cartToastTimerRef.current) {
+      window.clearTimeout(cartToastTimerRef.current);
+    }
+
+    cartToastTimerRef.current = window.setTimeout(() => {
+      setCartToastVisible(false);
+      cartToastTimerRef.current = null;
+    }, 1800);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (cartToastTimerRef.current) {
+        window.clearTimeout(cartToastTimerRef.current);
+      }
+    };
+  }, []);
 
   // Handler: Add regular product to cart
   const addToCart = (product: Product) => {
@@ -119,7 +142,7 @@ export default function App() {
       ];
     });
 
-    // Elegant toast or indicator effect could go here
+    showCartToast();
   };
 
   // Handler: Add custom DIY salve to cart
@@ -162,6 +185,7 @@ export default function App() {
 
     setDiySuccessMessage(true);
     setTimeout(() => setDiySuccessMessage(false), 3500);
+    showCartToast();
   };
 
   // Handler: Update quantity
@@ -1313,6 +1337,21 @@ export default function App() {
                   </motion.div>
                 </div>
               </div>
+          )}
+        </AnimatePresence>
+
+        {/* TOAST: Cart add confirmation */}
+        <AnimatePresence>
+          {cartToastVisible && (
+              <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.96 }}
+                  transition={{ duration: 0.18 }}
+                  className="fixed bottom-6 left-1/2 z-[60] -translate-x-1/2 rounded-full bg-[#231E19] px-4 py-2 text-sm font-semibold text-white shadow-2xl border border-amber-400/30"
+              >
+                Προστέθηκε στο καλάθι
+              </motion.div>
           )}
         </AnimatePresence>
 

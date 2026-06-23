@@ -34,6 +34,13 @@ import {
 import { PRODUCTS, DIY_INGREDIENTS, HERO_IMAGE } from './data';
 import { Product, DIYIngredient, CartItem } from './types';
 
+// Static Image Imports for absolute path safety across environments
+import herbalWaxSalve from './assets/images/herbal_wax_salve_1782197007682.jpg';
+import soapSpringGarden from './assets/images/soap_spring_garden_1782198290883.jpg';
+import creamFacialHydration from './assets/images/cream_facial_hydration_1782198304461.jpg';
+import boatSoapsOriginal from './assets/images/boat_soaps_1782197026244.jpg';
+import beeswaxCandles from './assets/images/beeswax_candles_1782197042129.jpg';
+
 export default function App() {
   // Navigation & Category states
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -136,7 +143,7 @@ export default function App() {
           name: customName,
           price: 10.00, // custom items flat rate
           quantity: 1,
-          image: 'assets/images/herbal_wax_salve_1782197007682.jpg', // uses the salve visual
+          image: herbalWaxSalve, // uses the salve visual
           categoryLabel: 'Κεραλοιφές (DIY)',
           isCustomDIY: true,
           diyDetails: {
@@ -963,7 +970,7 @@ export default function App() {
               <div className="space-y-4">
                 <div className="rounded-xl overflow-hidden border border-[#EBE7DF] bg-stone-50 aspect-square relative shadow-sm hover:shadow-md transition-shadow">
                   <img
-                      src="assets/images/soap_spring_garden_1782198290883.jpg"
+                      src={soapSpringGarden}
                       alt="Φυσικά Βότανα"
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
@@ -974,7 +981,7 @@ export default function App() {
                 </div>
                 <div className="rounded-xl overflow-hidden border border-[#EBE7DF] bg-stone-50 aspect-[3/4] relative shadow-sm hover:shadow-md transition-shadow">
                   <img
-                      src="assets/images/cream_facial_hydration_1782198304461.jpg"
+                      src={creamFacialHydration}
                       alt="Φυσικά Έλαια"
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
@@ -988,7 +995,7 @@ export default function App() {
               <div className="space-y-4 pt-8">
                 <div className="rounded-xl overflow-hidden border border-[#EBE7DF] bg-stone-50 aspect-[3/4] relative shadow-sm hover:shadow-md transition-shadow">
                   <img
-                      src="assets/images/boat_soaps_1782197026244.jpg"
+                      src={boatSoapsOriginal}
                       alt="Χειροποίητα Σαπούνια"
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
@@ -999,7 +1006,7 @@ export default function App() {
                 </div>
                 <div className="rounded-xl overflow-hidden border border-[#EBE7DF] bg-stone-50 aspect-square relative shadow-sm hover:shadow-md transition-shadow">
                   <img
-                      src="assets/images/beeswax_candles_1782197042129.jpg"
+                      src={beeswaxCandles}
                       alt="Κεριά Μελισσοκέρι"
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"

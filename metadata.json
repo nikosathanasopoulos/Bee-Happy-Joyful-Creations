@@ -1,0 +1,6 @@
+{
+  "name": "Bee Happy Joyful Creations",
+  "description": "Χειροποίητες φυσικές κεραλοιφές, σαπούνια ελαιολάδου, κρέμες, αρώματα και κεριά μελισσοκεριού υψηλής ποιότητας.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

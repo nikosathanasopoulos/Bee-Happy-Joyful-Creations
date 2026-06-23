@@ -1,0 +1,13 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+.idea/
+test-results/
+playwright-report/
+performance-summary.json
+summary.txt
